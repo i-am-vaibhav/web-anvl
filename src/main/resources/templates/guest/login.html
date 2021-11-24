@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="guest/guestLayout">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+</head>
+<body>
+	<div layout:fragment="content" class="container-fluid">
+		<div class="row">
+			<div class="m-3">
+				<h1>ANVL Login</h1>
+			</div>
+			<div class="col-md-1 col-xs-1 col-sm-1"></div>
+			<div class="col-md-10 col-xs-10 col-sm-10">
+				<div class="row">
+					<div class="col-md-4 col-xs-4 col-sm-4"></div>
+					<div class="col-md-4 col-xs-4 col-sm-4">
+						<div
+							class="card border border-success border-2 shadow-lg rounded rounded-3">
+							<div class="card-header text-center">
+								<img th:src="@{/images/logo.png}"
+									class="rounded mx-auto d-block" alt="Logo">
+							</div>
+							<form class="form-forizontal" th:action="@{/authenticate}"
+								method="post" onsubmit="return doLogin()" autocomplete="off">
+								<div class="card-body">
+									<h5 class="card-title">Login</h5>
+									<br></br>
+									<div class="form-group">
+										<label for="exampleInputEmail1">Email address</label> <input
+											type="email" class="form-control" id="exampleInputEmail1"
+											aria-describedby="emailHelp" placeholder="Enter email">
+										<small id="emailHelp" class="form-text text-muted">We'll
+											never share your email with anyone else.</small>
+									</div>
+									<div class="form-group">
+										<label for="exampleInputPassword1">Password</label> <input
+											type="password" class="form-control"
+											id="exampleInputPassword1" placeholder="Password">
+									</div>
+								</div>
+								<div class="card-footer text-center">
+									<button type="submit" class="btn btn-success">
+										<em class="fa fa-sign-in"></em> Login
+									</button>
+									<br /> <br />
+									<div class="alert alert-danger"
+										th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']?.message}"
+										role="alert"
+										th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+									</div>
+									<div class="alert alert-info" th:if="${param.logout}"
+										role="alert">You have been successfully logged out!</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-4 col-xs-4 col-sm-4"></div>
+				</div>
+			</div>
+			<div class="col-md-1 col-xs-1 col-sm-1"></div>
+		</div>
+	</div>
+</body>
+</html>
