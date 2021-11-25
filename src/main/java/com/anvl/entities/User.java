@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -42,10 +43,8 @@ public class User implements Serializable {
 
 	private String designation;
 
-	@ManyToMany
-	@JoinTable(name = "TBL_USER_ROLE", 
-	joinColumns = @JoinColumn(name = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "roe_id"))
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "TBL_USER_ROLE", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles;
 
 }

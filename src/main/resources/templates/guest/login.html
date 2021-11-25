@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-	layout:decorate="guest/guestLayout">
+	layout:decorate="guest/layout">
 <head>
 <meta charset="ISO-8859-1">
 <title>Login</title>
@@ -23,29 +23,34 @@
 							class="card border border-success border-2 shadow-lg rounded rounded-3">
 							<div class="card-header text-center">
 								<img th:src="@{/images/logo.png}"
-									class="rounded mx-auto d-block" alt="Logo">
+									class="rounded mx-auto d-block" height="100px" width="100px"
+									alt="Logo">
 							</div>
 							<form class="form-forizontal" th:action="@{/authenticate}"
-								method="post" onsubmit="return doLogin()" autocomplete="off">
+								method="post" autocomplete="off">
 								<div class="card-body">
-									<h5 class="card-title">Login</h5>
+									<h5 class="card-title">
+										<strong>Login</strong>
+									</h5>
 									<br></br>
 									<div class="form-group">
 										<label for="exampleInputEmail1">Email address</label> <input
-											type="email" class="form-control" id="exampleInputEmail1"
+											type="email" name="username" class="form-control"
+											required="required" id="exampleInputEmail1"
 											aria-describedby="emailHelp" placeholder="Enter email">
 										<small id="emailHelp" class="form-text text-muted">We'll
 											never share your email with anyone else.</small>
 									</div>
 									<div class="form-group">
 										<label for="exampleInputPassword1">Password</label> <input
-											type="password" class="form-control"
-											id="exampleInputPassword1" placeholder="Password">
+											type="password" name="password" required="required"
+											class="form-control" id="exampleInputPassword1"
+											placeholder="Password">
 									</div>
 								</div>
 								<div class="card-footer text-center">
 									<button type="submit" class="btn btn-success">
-										<em class="fa fa-sign-in"></em> Login
+										<em class="fas fa-sign-in-alt"></em> Login
 									</button>
 									<br /> <br />
 									<div class="alert alert-danger"
@@ -55,6 +60,8 @@
 									</div>
 									<div class="alert alert-info" th:if="${param.logout}"
 										role="alert">You have been successfully logged out!</div>
+									<div class="alert alert-warning" th:if="${param.session}"
+										role="alert">Session Expired!</div>
 								</div>
 							</form>
 						</div>

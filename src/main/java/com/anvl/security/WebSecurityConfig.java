@@ -20,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder.BCryptVe
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * @author Vaibhav
@@ -34,15 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService customUserDetailsService;
 
-	@Autowired
-	private CustomAuthenticationFailureHandler failureHandler;
-
-	@Autowired
-	private CustomAuthenticationSuccessHandler successHandler;
-
-	@Autowired
-	private CustomLogoutSuccessHandler logoutHandler;
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// making login page and guest page
@@ -52,19 +44,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().anyRequest().authenticated();
 
 		// adding custom form login and handlers
-		http.userDetailsService(customUserDetailsService).formLogin().loginPage("/guest")
-				.loginProcessingUrl("/authenticate").defaultSuccessUrl("/home").successHandler(successHandler)
-				.failureUrl("/login?error").failureHandler(failureHandler);
+		http.userDetailsService(customUserDetailsService).formLogin().loginPage("/guest/login")
+				.loginProcessingUrl("/authenticate").defaultSuccessUrl("/home", false).failureUrl("/guest/login?error");
 
 		// configuring logout
-		http.logout().logoutSuccessHandler(logoutHandler).clearAuthentication(true).invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID").logoutSuccessUrl("/login?logout").permitAll();
+		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).clearAuthentication(true)
+				.invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/guest/login?logout")
+				.permitAll();
 
 		// Session Management
-		http.sessionManagement().invalidSessionUrl("/login?session")
-				.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation().migrateSession()
-				.sessionAuthenticationStrategy(registerSessionAuthStr()).maximumSessions(1)
-				.sessionRegistry(sessionRegistry()).maximumSessions(1).expiredUrl("/doLogin?error")
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()
+				.migrateSession().sessionAuthenticationStrategy(registerSessionAuthStr()).maximumSessions(1)
+				.sessionRegistry(sessionRegistry()).maximumSessions(1).expiredUrl("/guest/login?error")
 				.maxSessionsPreventsLogin(true);
 	}
 
@@ -81,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/META-INF/resources/**", "/webjars/**", "/js/**", "/css/**", "/images/**",
-				"/templates/**","/static/**");
+				"/templates/**", "/static/**");
 	}
 
 	@Bean
