@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Session Management
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()
 				.migrateSession().sessionAuthenticationStrategy(registerSessionAuthStr()).maximumSessions(1)
-				.sessionRegistry(sessionRegistry()).maximumSessions(1).expiredUrl("/guest/login?error")
+				.sessionRegistry(sessionRegistry()).maximumSessions(1).expiredUrl("/guest/login?session")
 				.maxSessionsPreventsLogin(true);
 	}
 

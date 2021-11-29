@@ -34,22 +34,25 @@
 									</h5>
 									<br></br>
 									<div class="form-group">
-										<label for="exampleInputEmail1" th:text="#{login.email}">Email address</label> <input
-											type="email" name="username" class="form-control"
-											required="required" id="exampleInputEmail1"
-											aria-describedby="emailHelp" th:placeholder="#{login.email}">
-										<small id="emailHelp" class="form-text text-muted" th:text="#{login.email.msg}">We'll
-											never share your email with anyone else.</small>
+										<label for="exampleInputEmail1" th:text="#{login.email}">Email
+											address</label> <input type="email" name="username"
+											class="form-control" required="required"
+											id="exampleInputEmail1" aria-describedby="emailHelp"
+											th:placeholder="#{login.email}"> <small
+											id="emailHelp" class="form-text text-muted"
+											th:text="#{login.email.msg}">We'll never share your
+											email with anyone else.</small>
 									</div>
 									<div class="form-group">
-										<label for="exampleInputPassword1" th:text="#{login.password}">Password</label> <input
-											type="password" name="password" required="required"
+										<label for="exampleInputPassword1" th:text="#{login.password}">Password</label>
+										<input type="password" name="password" required="required"
 											class="form-control" id="exampleInputPassword1"
 											th:placeholder="#{login.password}">
 									</div>
 								</div>
 								<div class="card-footer text-center">
-									<button type="submit" class="btn btn-success" th:text="#{login.button}">
+									<button type="submit" class="btn btn-success"
+										th:text="#{login.button}">
 										<em class="fas fa-sign-in-alt"></em> Login
 									</button>
 									<br /> <br />
@@ -59,9 +62,11 @@
 										th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
 									</div>
 									<div class="alert alert-info" th:if="${param.logout}"
-										role="alert">You have been successfully logged out!</div>
+										role="alert" th:text="#{logout.success.msg}">You have
+										been successfully logged out!</div>
 									<div class="alert alert-warning" th:if="${param.session}"
-										role="alert">Session Expired!</div>
+										role="alert" th:text="#{session.expired.msg}">Session
+										Expired!</div>
 								</div>
 							</form>
 						</div>
