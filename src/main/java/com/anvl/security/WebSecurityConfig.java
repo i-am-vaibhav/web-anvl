@@ -37,13 +37,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// making login page and guest page
+		// making login page and guest page public
 		http.authorizeRequests().antMatchers("/guest/**", "/authenticate").permitAll();
 
 		// making spring security to validate all requests other than specified above
 		http.authorizeRequests().anyRequest().authenticated();
 
-		// configuring custom form login 
+		// configuring custom form login
 		http.userDetailsService(customUserDetailsService).formLogin().loginPage("/guest/login")
 				.loginProcessingUrl("/authenticate").defaultSuccessUrl("/home", false).failureUrl("/guest/login?error");
 
@@ -51,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).clearAuthentication(true)
 				.invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/guest/login?logout")
 				.permitAll();
-
-		// Session Management
+ 
+		// session Management
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).sessionFixation()
 				.migrateSession().sessionAuthenticationStrategy(registerSessionAuthStr()).maximumSessions(1)
 				.sessionRegistry(sessionRegistry()).maximumSessions(1).expiredUrl("/guest/login?session")

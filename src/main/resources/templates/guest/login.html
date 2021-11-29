@@ -59,7 +59,7 @@
 									<div class="alert alert-danger"
 										th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']?.message}"
 										role="alert"
-										th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
+										th:text="#{login.error.msg}">
 									</div>
 									<div class="alert alert-info" th:if="${param.logout}"
 										role="alert" th:text="#{logout.success.msg}">You have
