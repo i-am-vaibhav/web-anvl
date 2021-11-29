@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// making spring security to validate all requests other than specified above
 		http.authorizeRequests().anyRequest().authenticated();
 
-		// adding custom form login and handlers
+		// configuring custom form login 
 		http.userDetailsService(customUserDetailsService).formLogin().loginPage("/guest/login")
 				.loginProcessingUrl("/authenticate").defaultSuccessUrl("/home", false).failureUrl("/guest/login?error");
 
