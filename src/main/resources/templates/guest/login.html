@@ -23,7 +23,7 @@
 							class="card border border-success border-2 shadow-lg rounded rounded-3">
 							<div class="card-header text-center">
 								<img th:src="@{/images/logo.png}"
-									class="rounded mx-auto d-block" height="100px" width="100px"
+									class="rounded rounded-3 mx-auto d-block" height="100px" width="100px"
 									alt="Logo">
 							</div>
 							<form class="form-forizontal" th:action="@{/authenticate}"
@@ -48,6 +48,9 @@
 										<input type="password" name="password" required="required"
 											class="form-control" id="exampleInputPassword1"
 											th:placeholder="#{login.password}">
+									</div>
+									<div class="form-group">
+									    <label><a class="pull-right" th:href="@{/guest}">>> Skip for now</a></label>
 									</div>
 								</div>
 								<div class="card-footer text-center">

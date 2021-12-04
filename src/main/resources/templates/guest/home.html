@@ -13,6 +13,29 @@
 				<h1 th:text="#{welcome.header}">Welcome to ANVL</h1>
 			</div>
 		</div>
+		<div class="col-md-12 d-inline-block">
+			<div class="col-md-3 d-inline-block" style="width: 24% !important;"
+				th:each="prod : ${products}">
+				<div
+					class="card border border-primary border-2 shadow-lg rounded rounded-3"
+					style="width: 14rem;">
+					<img class="card-img-top"
+						th:src="@{${'/products/images/' + prod.filename}}" height="250px"
+						width="100px" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title text-truncate" th:text="${prod.title}">Card
+							title</h5>
+						<p class="card-text text-truncate" th:text="${prod.description}">Some
+							quick example text to build on the card title and make up the
+							bulk of the card's content.</p>
+						<div class="col-md-12">
+							<button class="pull-left more btn btn-sm btn-primary">more</button>
+							<a href="#" class="pull-right btn-sm btn btn-primary"><em class="fas fa-plus"></em></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

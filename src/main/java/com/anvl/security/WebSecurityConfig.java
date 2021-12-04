@@ -71,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/META-INF/resources/**", "/webjars/**", "/js/**", "/css/**", "/images/**",
+		web.ignoring().antMatchers("/META-INF/resources/**", "/webjars/**", "/js/**", "/css/**", "/images/**","/products/**",
 				"/templates/**", "/static/**");
 	}
 
