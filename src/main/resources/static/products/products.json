@@ -269,7 +269,7 @@
   "price": 29.97,
   "rating": 3
 }, {
-  "title": "Smoothie with chia seeds",
+  "title": "Smoothie with seeds",
   "type": "fruit",
   "description": "Glass of red strawberry smoothie with chia seeds, served with retro cocktail tube, fresh mint and strawberries over wooden table",
   "filename": "30.jpg",
@@ -280,7 +280,7 @@
 }, {
   "title": "Yogurt",
   "type": "dairy",
-  "description": "Homemade yogurt with raspberry and mint",
+  "description": "Yogurt with raspberry, mint",
   "filename": "31.jpg",
   "height": 450,
   "width": 299,
