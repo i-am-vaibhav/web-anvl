@@ -13,24 +13,36 @@
 				<h1 th:text="#{welcome.header}">Welcome to ANVL</h1>
 			</div>
 		</div>
-		<div class="col-md-12 d-inline-block">
+		<div class="offset-1 col-md-11 d-inline-block">
 			<div class="col-md-3 d-inline-block" style="width: 24% !important;"
 				th:each="prod : ${products}">
-				<div
-					class="card border border-primary border-2 shadow-lg rounded rounded-3"
+				<div class="card card-ani shadow-lg rounded rounded-3"
 					style="width: 14rem;">
 					<img class="card-img-top"
 						th:src="@{${'/products/images/' + prod.filename}}" height="220px"
 						width="100px" alt="Card image cap">
 					<div class="card-body">
-						<h5 class="card-title text-truncate" th:text="${prod.title}">Card
-							title</h5>
-						<p class="card-text text-muted text-truncate" th:text="${prod.description}">Some
-							quick example text to build on the card title and make up the
-							bulk of the card's content.</p>
+						<div class="card-title">
+							<div class="row">
+								<div class="col-md-10 col-10">
+									<h5 class="pull-left text-truncate" th:text="${prod.title}">Card
+										title</h5>
+								</div>
+								<div class="col-md-2 col-2 d-flex">
+									<h5 class="pull-right" th:text="${prod.rating}">Card title
+									</h5>
+									<em class="text-warning fas fa-star m-1"></em>
+								</div>
+							</div>
+						</div>
+						<p class="card-text text-muted text-truncate"
+							th:text="${prod.description}">Some quick example text to
+							build on the card title and make up the bulk of the card's
+							content.</p>
 						<div class="col-md-12">
 							<button class="pull-left more btn btn-sm btn-primary">more</button>
-							<a href="#" class="pull-right btn-sm btn btn-primary"><em class="fas fa-plus"></em></a>
+							<a href="#" class="pull-right btn-sm btn btn-primary"><em
+								class="fas fa-plus"></em></a>
 						</div>
 					</div>
 				</div>
