@@ -18,19 +18,19 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "TBL_PRODUCT")
-public class Product {
+@Table(name = "tbl_cart")
+public class Cart {
 
 	@Id
 	@GeneratedValue
 	private BigDecimal id;
-	private String title;
-	private String type;
-	private String description;
-	private String filename;
-	private String height;
-	private String width;
+
+	private String username;
+	
+	private String productName;
+
+	private BigDecimal product_id;
+
 	private BigDecimal price;
-	private String rating;
 
 }

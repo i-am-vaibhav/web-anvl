@@ -8,6 +8,7 @@ import lombok.Data;
 public class CartRequest {
 
 	private BigDecimal id;
+	private String username;
 	private String operation; // ADD, REMOVE, REMOVE_ALL
 
 	public static CartRequest add(BigDecimal id) {

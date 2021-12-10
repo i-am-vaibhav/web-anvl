@@ -70,6 +70,8 @@
 									<div class="alert alert-warning" th:if="${param.session}"
 										role="alert" th:text="#{session.expired.msg}">Session
 										Expired!</div>
+									<div class="alert alert-warning" th:if="${param.msg}"
+										role="alert" th:text="#{login.proceed.msg}">Please login to proceed further!</div>
 								</div>
 							</form>
 						</div>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="https://www.w3.org/1999/xhtml/"
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml/"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
+<meta th:content="${_csrf.token}" id="token">
+<meta th:content="${_csrf.headerName}" id="header">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Web ANVL</title>
 <link rel="icon" th:href="@{/images/favicon.ico}" type="image/ico">
@@ -37,7 +39,9 @@
 </head>
 <body class="sidebar-mini layout-fixed" style="height: auto;">
 	<div class="wrapper">
-
+        <div id="loading">
+		</div>
+        
 		<!-- Preloader -->
 		<div
 			class="preloader flex-column justify-content-center align-items-center"
@@ -59,9 +63,9 @@
 
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="#" role="button">
+				<li class="nav-item"><a class="nav-link" th:onclick="@{'openCart()'}" role="button">
 						<i class="fas fa-shopping-cart"></i><span
-						class="badge badge-warning navbar-badge">0</span>
+						class="badge badge-warning navbar-badge" th:text="${cartcount}" id="cart-count">0</span>
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					data-widget="fullscreen" href="#" role="button"> <i
@@ -78,7 +82,7 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a th:href="@{/home}" class="brand-link"> <img
-				th:src="@{/images/logo.png}" alt="AdminLTE Logo"
+				th:src="@{/images/logo.png}" alt="AdminLTE Logo" height="35" width="35"
 				class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">WEB ANVL</span>
 			</a>
@@ -101,11 +105,12 @@
 							<!-- Sidebar user panel (optional) -->
 							<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 								<div class="image">
-									<img th:src="@{/images/user icon.svg}"
+									<img th:src="@{/images/user icon.svg}" height="35" width="35"
 										class="img-circle elevation-2" alt="User Image">
 								</div>
 								<div class="info">
-									<a href="#" class="d-block" th:text="${user.name}"> </a>
+									<a href="#" class="d-block" id="username"
+										th:text="${user.name}"> </a>
 								</div>
 							</div>
 
@@ -188,6 +193,8 @@
 	<script th:src="@{/webjars/AdminLTE/3.1.0/dist/js/adminlte.js}"></script>
 
 	<script th:src="@{/js/product.js}"></script>
+	<script th:src="@{/js/loader.js}"></script>
+	<script th:src="@{/js/cart.js}"></script>
 </body>
 
 </html>

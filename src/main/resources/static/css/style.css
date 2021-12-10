@@ -4,12 +4,25 @@
 	border-radius: 7px !important;
 }
 
+#loading {
+	background: url('/webanvl/images/loader.gif') center no-repeat #fff;
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	opacity : 0.9;
+	height: 100%;
+	width: 100%;
+	z-index: 9999999;
+}
+
 .card-ani img {
 	background: #ffffff;
 	overflow: hidden;
 	box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.50);
 	border-radius: 5px;
 }
+
 .card-ani img {
 	-webkit-transition: all .9s ease;
 	-moz-transition: all .9s ease;

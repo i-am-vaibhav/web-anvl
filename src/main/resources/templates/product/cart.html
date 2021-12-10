@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml/"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="main/layout">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div layout:fragment="content" class="container-fluid">
+		<div class="row">
+			<div class="m-3">
+				<h1>My Cart</h1>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row" th:if="${!#lists.isEmpty(cartProducts)}">
+				<div class="col-lg-4 col-md-4 col-12"
+					th:each="prod : ${cartProducts}">
+					<!-- small box -->
+					<div class="small-box bg-secondary">
+						<div class="inner">
+							<h3 th:text="${prod.name}">150</h3>
+							<span class="badge badge-warning" th:text="${prod.count}"></span>
+							<div class="d-flex">
+								<p>Price : &nbsp;</p>
+								<p th:text="${prod.price}">New Orders</p>
+							</div>
+						</div>
+						<p class="d-none" th:text="${prod.pid}"></p>
+					</div>
+				</div>
+				<div class="col-md-12 m-3 pull-right d-flex">
+					<h4>Total Amount :&nbsp;</h4>
+					<h4 th:text="${cartAmount}"></h4>
+				</div>
+			</div>
+			<div class="col-12 text-center"
+				th:if="${#lists.isEmpty(cartProducts)}">
+				<h1>Your Cart is Empty</h1>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

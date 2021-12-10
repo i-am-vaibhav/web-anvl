@@ -3,6 +3,8 @@
  */
 package com.anvl.model;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +25,7 @@ public class Product {
 	private String filename;
 	private String height;
 	private String width;
-	private String price;
+	private BigDecimal price;
 	private String rating;
 
 	public Product(String type, long id) {

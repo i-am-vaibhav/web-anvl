@@ -38,14 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// making login page and guest page public
-		http.authorizeRequests().antMatchers("/guest/**", "/authenticate").permitAll();
+		http.authorizeRequests().antMatchers("/guest/**", "/authenticate" , "/v1/products/**").permitAll();
 
 		// making spring security to validate all requests other than specified above
 		http.authorizeRequests().anyRequest().authenticated();
 
 		// configuring custom form login
 		http.userDetailsService(customUserDetailsService).formLogin().loginPage("/guest/login")
-				.loginProcessingUrl("/authenticate").defaultSuccessUrl("/home", false).failureUrl("/guest/login?error");
+				.loginProcessingUrl("/authenticate").defaultSuccessUrl("/home", true).failureUrl("/guest/login?error");
 
 		// configuring logout
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")).clearAuthentication(true)
@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/META-INF/resources/**", "/webjars/**", "/js/**", "/css/**", "/images/**","/products/**",
-				"/templates/**", "/static/**");
+				"/templates/**", "/static/**", "/h2-console/**");
 	}
 
 	@Bean
