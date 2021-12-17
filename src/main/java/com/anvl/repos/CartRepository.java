@@ -23,7 +23,7 @@ public interface CartRepository extends JpaRepository<Cart, BigDecimal> {
 
 	long countByUsername(String username);
 	
-	@Query("select new com.anvl.model.CartItem(max(c.productName) as name,sum(c.price) as price,count(*) as count,c.product_id as pid) from Cart c where c.username = :username group by c.product_id")
+	@Query("select new com.anvl.model.CartItem(max(c.productName) as name,sum(c.price) as price,count(*) as count,c.product_id as pid,max(c.img) as img) from Cart c where c.username = :username group by c.product_id")
 	List<CartItem> getCartByUsername(@Param("username") String username);
 	
 }

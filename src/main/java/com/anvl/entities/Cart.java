@@ -32,5 +32,7 @@ public class Cart {
 	private BigDecimal product_id;
 
 	private BigDecimal price;
+	
+	private String img;
 
 }

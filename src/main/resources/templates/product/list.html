@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="col-md-3 animated rotateInDownLeft animate__delay-1s d-inline-block" style="width: 24% !important;"
+					<div class="col-md-3 animated rotateInDownLeft delay-1s d-inline-block" style="width: 24% !important;"
 						th:each="prod : ${products.content}">
 						<div class="card card-ani shadow-lg rounded rounded-3"
 							style="width: 14rem;">
@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-md-12">
 					<nav aria-label="Page navigation example">
-						<ul class="pagination pagination-lg justify-content-center">
+						<ul class="pagination animated jackInTheBox delay-1s pagination-lg justify-content-center">
 							<li class="page-item"><a class="page-link"
 								th:attr="href=${products.number==0}? '#' : @{${'/v1/products/type/'+ type + '/page/' +{products.number-1} }}">Previous</a></li>
 							<li class="page-item" th:each="pageNumber : ${pageNumbers}"><a

@@ -18,24 +18,37 @@
 				<div class="col-lg-4 animated zoomInDown delay-1s col-md-4 col-12"
 					th:each="prod : ${cartProducts}">
 					<!-- small box -->
-					<div class="small-box bg-secondary">
-						<div class="inner">
-							<h3 th:text="${prod.name}">150</h3>
-							<span class="badge badge-warning" th:text="${prod.count}"></span>
-							<div class="d-flex">
-								<p>Price : &nbsp;</p>
-								<p th:text="${prod.price}">New Orders</p>
+					<div class="card card-widget widget-user-2">
+						<!-- Add the bg color to the header using any of the bg-* classes -->
+						<div class="widget-user-header bg-secondary">
+							<div class="widget-user-image">
+								<img class="img-fluid img-thumbnail elevation-2" style="min-height:6em;"
+									th:src="@{${'/products/images/' + prod.img}}" alt="User Avatar">
 							</div>
+							<!-- /.widget-user-image -->
+							<h3 class="widget-user-username" th:text="${prod.name}">Nadia
+								Carmichael</h3>
+							<h5 class="widget-user-desc">
+								<span class="badge badge-warning" th:text="${prod.count}"></span>
+							</h5>
 						</div>
-						<p class="d-none" th:text="${prod.pid}"></p>
+						<div class="card-footer p-0">
+							<ul class="nav flex-column">
+								<li class="nav-item d-flex">
+									<h5>&nbsp;&nbsp;&nbsp;&nbsp;Price : &nbsp;</h5>
+									<h5 th:text="${prod.price}">New Orders</h5>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-12 animated fadeIn delay-1s m-3 pull-right d-flex">
+				<div
+					class="col-md-12 animated jackInTheBox delay-1s m-3 pull-right d-flex">
 					<h4>Total Amount :&nbsp;</h4>
 					<h4 th:text="${cartAmount}"></h4>
 				</div>
 			</div>
-			<div class="col-12 text-center animated fadeIn delay-1s"
+			<div class="col-12 text-center animated jackInTheBox delay-1s"
 				th:if="${#lists.isEmpty(cartProducts)}">
 				<h1>Your Cart is Empty</h1>
 			</div>

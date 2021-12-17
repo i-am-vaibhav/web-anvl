@@ -46,6 +46,7 @@ public class CartService {
 			cart.setProductName(product.getTitle());
 			cart.setUsername(request.getUsername());
 			cart.setPrice(product.getPrice());
+			cart.setImg(product.getFilename());
 			cartRepository.save(cart);
 			response = CartResponse.success(countByUsername + 1);
 		}
