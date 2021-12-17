@@ -10,10 +10,14 @@ async function openCart() {
 	}
 	sessionStorage.clear();
 	let ids = [];
-	for (var i = 0 ; i < cart.length; i++) {
+	for (var i = 0; i < cart.length; i++) {
 		ids.push(cart[i].id);
 	}
-	$.get("/webanvl/v1/product/cart?cids=" + ids,function(){
-		window.location.href="/webanvl/v1/product/cart?cids="
+	$.post({
+		url : "/webanvl/v1/product/cart?cids=" + ids,
+		beforeSend : beforeSendHandler,
+		success : function() {
+			window.location.href = "/webanvl/v1/product/cart"
+		}
 	});
 }

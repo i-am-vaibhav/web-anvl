@@ -17,7 +17,7 @@ $(document).ready(function() {
 	let cart = [];
 	try {
 		cart = JSON.parse(sessionStorage.getItem("cart"));
-		if(cart == null){
+		if (cart == null) {
 			cart = [];
 		}
 	} catch (e) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
 	if (cart) {
 		$("#gcart-count").text(cart.length);
 		let val = $("#cart-count").text();
-		if(val=='0'){
+		if (val == '0') {
 			$("#cart-count").text(cart.length);
 		}
 	}
@@ -37,7 +37,7 @@ async function addCartToCacheStorage(id) {
 	let cart = [];
 	try {
 		cart = JSON.parse(sessionStorage.getItem("cart"));
-		if(cart == null){
+		if (cart == null) {
 			cart = [];
 		}
 	} catch (e) {
@@ -55,13 +55,15 @@ async function addToCart(id) {
 	$.post({
 		url: "/webanvl/v1/products",
 		data: { id: id, operation: "ADD", username: $("#username").text() },
-		beforeSend: function(xhr) {
-			let header = $("#header").attr("content");
-			let token = $("#token").attr("content");
-			xhr.setRequestHeader(header, token)
-		},
+		beforeSend: beforeSendHandler,
 		success: function(response) {
 			$("#cart-count").text(response.prodCount);
 		}
 	});
+}
+
+let beforeSendHandler = function(xhr) {
+	let header = $("#header").attr("content");
+	let token = $("#token").attr("content");
+	xhr.setRequestHeader(header, token)
 }

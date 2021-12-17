@@ -21,7 +21,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.anvl.entities.Product;
 import com.anvl.model.CartItem;
@@ -84,14 +86,19 @@ public class MainController {
 		return "product/list";
 	}
 
-	@GetMapping("/v1/product/cart")
-	public String cartPage(@RequestParam(required = false) List<String> cids, Model model) {
-		Authentication authentication = getAuthentication();
-		if(authentication == null) {
-			return "redirect:/guest/login";
-		}
+	@PostMapping("/v1/product/cart")
+	@ResponseBody
+	public void cartPage(@RequestParam(required = false) List<String> cids, Model model) {
 		if (!CollectionUtils.isEmpty(cids))
 			cartService.addById(cids);
+	}
+
+	@GetMapping("/v1/product/cart")
+	public String cartPage(Model model) {
+		Authentication authentication = getAuthentication();
+		if (authentication == null) {
+			return "redirect:/guest/login";
+		}
 		Pair<List<CartItem>, BigDecimal> cart = cartService.getCart(authentication.getName());
 		model.addAttribute("cartcount", cartService.getCountOfProduct(authentication.getName()));
 		model.addAttribute("cartProducts", cart.getFirst());

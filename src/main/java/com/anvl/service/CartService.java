@@ -63,12 +63,12 @@ public class CartService {
 	}
 
 	public void addById(List<String> ids) {
-		Cart cart = new Cart();
 		for (String string : ids) {
 			BigDecimal id = new BigDecimal(string);
 			Optional<Product> findById = productRepository.findById(id);
 			if (findById.isPresent()) {
 				Product product = findById.get();
+				Cart cart = new Cart();
 				cart.setProduct_id(id);
 				cart.setProductName(product.getTitle());
 				cart.setUsername(getAuthentication().getName());

@@ -15,7 +15,7 @@
 		</div>
 		<div class="container">
 			<div class="row" th:if="${!#lists.isEmpty(cartProducts)}">
-				<div class="col-lg-4 col-md-4 col-12"
+				<div class="col-lg-4 animated zoomInDown animate__delay-1s col-md-4 col-12"
 					th:each="prod : ${cartProducts}">
 					<!-- small box -->
 					<div class="small-box bg-secondary">
@@ -30,12 +30,12 @@
 						<p class="d-none" th:text="${prod.pid}"></p>
 					</div>
 				</div>
-				<div class="col-md-12 m-3 pull-right d-flex">
+				<div class="col-md-12 animated fadeIn delay-1s m-3 pull-right d-flex">
 					<h4>Total Amount :&nbsp;</h4>
 					<h4 th:text="${cartAmount}"></h4>
 				</div>
 			</div>
-			<div class="col-12 text-center"
+			<div class="col-12 text-center animated fadeIn delay-1s"
 				th:if="${#lists.isEmpty(cartProducts)}">
 				<h1>Your Cart is Empty</h1>
 			</div>
