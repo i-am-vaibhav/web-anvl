@@ -25,12 +25,20 @@ $(document).ready(function() {
 	}
 	if (cart) {
 		$("#gcart-count").text(cart.length);
+		$("#gcart-count").addClass("animated rubberBand")
 		let val = $("#cart-count").text();
 		if (val == '0') {
 			$("#cart-count").text(cart.length);
-		}
-	}
+			$("#cart-count").addClass("animated rubberBand")
+			setTimeout(function() {
+				$("#cart-count").removeClass("animated rubberBand");
+			}, 500);
 
+		}
+		setTimeout(function() {
+			$("#gcart-count").removeClass("animated rubberBand");
+		}, 500);
+	}
 });
 
 async function addCartToCacheStorage(id) {
@@ -48,6 +56,10 @@ async function addCartToCacheStorage(id) {
 		cart.push(data);
 		sessionStorage.cart = JSON.stringify(cart);
 		$("#gcart-count").text(cart.length);
+		$("#gcart-count").addClass("animated rubberBand");
+		setTimeout(function() {
+			$("#gcart-count").removeClass("animated rubberBand");
+		}, 500);
 	}
 }
 
@@ -58,6 +70,10 @@ async function addToCart(id) {
 		beforeSend: beforeSendHandler,
 		success: function(response) {
 			$("#cart-count").text(response.prodCount);
+			$("#cart-count").addClass("animated rubberBand");
+			setTimeout(function() {
+				$("#cart-count").removeClass("animated rubberBand");
+			}, 500);
 		}
 	});
 }

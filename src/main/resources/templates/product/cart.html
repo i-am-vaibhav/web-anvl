@@ -15,21 +15,23 @@
 		</div>
 		<div class="container">
 			<div class="row" th:if="${!#lists.isEmpty(cartProducts)}">
-				<div class="col-lg-4 animated zoomInDown delay-1s col-md-4 col-12"
+				<div class="col-lg-4 animated bounceInDown delay-1s col-md-4 col-12"
 					th:each="prod : ${cartProducts}">
 					<!-- small box -->
 					<div class="card card-widget widget-user-2">
 						<!-- Add the bg color to the header using any of the bg-* classes -->
-						<div class="widget-user-header bg-secondary">
+						<div class="widget-user-header bg-gradient-warning"
+							style="max-height: 8em;">
 							<div class="widget-user-image">
-								<img class="img-fluid img-thumbnail elevation-2" style="min-height:6em;"
+								<img class="img-fluid img-thumbnail elevation-2"
+									style="min-height: 6em;"
 									th:src="@{${'/products/images/' + prod.img}}" alt="User Avatar">
 							</div>
 							<!-- /.widget-user-image -->
-							<h3 class="widget-user-username" th:text="${prod.name}">Nadia
+							<h3 class="widget-user-username text-wrap" th:text="${prod.name}">Nadia
 								Carmichael</h3>
 							<h5 class="widget-user-desc">
-								<span class="badge badge-warning" th:text="${prod.count}"></span>
+								<span class="badge badge-dark" th:text="${prod.count}"></span>
 							</h5>
 						</div>
 						<div class="card-footer p-0">

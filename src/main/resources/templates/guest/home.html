@@ -14,8 +14,9 @@
 			</div>
 		</div>
 		<div class="offset-1 col-md-11 d-inline-block">
-			<div class="col-md-3 animated rotateInDownLeft delay-1s d-inline-block" style="width: 24% !important;"
-				th:each="prod : ${products}">
+			<div
+				class="col-md-3 animated rotateInDownLeft delay-1s d-inline-block"
+				style="width: 24% !important;" th:each="prod : ${products}">
 				<div class="card card-ani shadow-lg rounded rounded-3"
 					style="width: 14rem;">
 					<img class="card-img-top"
@@ -33,6 +34,10 @@
 									</h5>
 									<em class="text-warning fas fa-star m-1"></em>
 								</div>
+								<div class="col-md-2 col-2 d-flex animated tada delay-2s">
+									<h6 class="pull-left ">Price&nbsp;:&nbsp;&nbsp;Rs.&nbsp;</h6>
+									<h6 class="pull-left" th:text="${prod.price}"></h6>
+								</div>
 							</div>
 						</div>
 						<p class="card-text text-muted text-truncate"
@@ -41,7 +46,8 @@
 							content.</p>
 						<div class="col-md-12">
 							<button class="pull-left more btn btn-sm btn-primary">more</button>
-							<a href="#" class="pull-right btn-sm btn btn-primary addToCart"  th:onclick="'addCartToCacheStorage(\'' + ${prod.id} + '\');'"><em
+							<a href="#" class="pull-right btn-sm btn btn-primary addToCart"
+								th:onclick="'addCartToCacheStorage(\'' + ${prod.id} + '\');'"><em
 								class="fas fa-plus"></em></a>
 						</div>
 					</div>

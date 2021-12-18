@@ -35,14 +35,18 @@
 											title</h5>
 										<em class="text-warning fas fa-star m-1"></em>
 									</div>
+									<div class="col-md-2 col-2 d-flex animated tada delay-2s">
+										<h6 class="pull-left" >Price&nbsp;:&nbsp;&nbsp;Rs.&nbsp;</h6>
+										<h6 class="pull-left" th:text="${prod.price}"></h6>
+									</div>
 								</div>
 								<p class="card-text text-muted text-truncate"
 									th:text="${prod.description}">Some quick example text to
 									build on the card title and make up the bulk of the card's
 									content.</p>
 								<div class="col-md-12">
-									<button class="pull-left more btn btn-sm btn-primary">more</button>
-									<a href="#" class="pull-right btn-sm btn btn-primary"><em
+									<button class="pull-left more btn btn-sm bg-gradient-warning">more</button>
+									<a href="#" class="pull-right btn-sm btn bg-gradient-warning"><em
 										class="fas fa-plus"
 										th:onclick="'addToCart(\'' + ${prod.id} + '\');'"></em></a>
 								</div>

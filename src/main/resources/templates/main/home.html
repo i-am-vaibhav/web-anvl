@@ -15,9 +15,9 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-6 animated zoomInDown delay-1s" th:each="prod : ${products}">
+				<div class="col-lg-3 col-6 animated bounceInDown delay-1s" th:each="prod : ${products}">
 					<!-- small box -->
-					<div class="small-box bg-primary">
+					<div class="small-box bg-gradient-warning">
 						<div class="inner">
 							<h3 th:text="${prod.id}">150</h3>
 							<p th:text="${#strings.toUpperCase(prod.type)}">New Orders</p>
