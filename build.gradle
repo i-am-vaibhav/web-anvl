@@ -38,6 +38,7 @@ dependencies {
 	testImplementation group: 'junit', name: 'junit', version: '4.11'
 	
 	implementation group: 'org.webjars', name: 'AdminLTE', version: '3.1.0'
+	implementation group: 'org.webjars', name: 'animate.css', version: '3.7.2'
 	
 }
 

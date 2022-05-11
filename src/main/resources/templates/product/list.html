@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml/"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="main/layout">
+<head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+	<div layout:fragment="content" class="container-fluid">
+		<div class="row">
+			<div class="m-3 d-flex">
+				<h1 class="mr-1" th:text="${#strings.capitalize(type)}">Type</h1>
+				<h1 th:text="#{product.header}">Products</h1>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-3 animated rotateInDownLeft delay-1s d-inline-block" style="width: 24% !important;"
+						th:each="prod : ${products.content}">
+						<div class="card card-ani shadow-lg rounded rounded-3"
+							style="width: 14rem;">
+							<img class="card-img-top"
+								th:src="@{${'/products/images/' + prod.filename}}"
+								height="220px" width="100px" alt="Card image cap">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-md-10 col-10">
+										<h5 class="pull-left text-truncate" th:text="${prod.title}">Card
+											title</h5>
+									</div>
+									<div class="col-md-2 col-2 d-flex">
+										<h5 class="pull-right" th:text="${prod.rating}">Card
+											title</h5>
+										<em class="text-warning fas fa-star m-1"></em>
+									</div>
+									<div class="col-md-2 col-2 d-flex animated tada delay-2s">
+										<h6 class="pull-left" >Price&nbsp;:&nbsp;&nbsp;Rs.&nbsp;</h6>
+										<h6 class="pull-left" th:text="${prod.price}"></h6>
+									</div>
+								</div>
+								<p class="card-text text-muted text-truncate"
+									th:text="${prod.description}">Some quick example text to
+									build on the card title and make up the bulk of the card's
+									content.</p>
+								<div class="col-md-12">
+									<button class="pull-left more btn btn-sm bg-gradient-warning">more</button>
+									<a href="#" class="pull-right btn-sm btn bg-gradient-warning"><em
+										class="fas fa-plus"
+										th:onclick="'addToCart(\'' + ${prod.id} + '\');'"></em></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination animated jackInTheBox delay-1s pagination-lg justify-content-center">
+							<li class="page-item"><a class="page-link"
+								th:attr="href=${products.number==0}? '#' : @{${'/v1/products/type/'+ type + '/page/' +{products.number-1} }}">Previous</a></li>
+							<li class="page-item" th:each="pageNumber : ${pageNumbers}"><a
+								class="page-link"
+								th:href="@{${'/v1/products/type/'+ type + '/page/' + {pageNumber} }}"
+								th:text="${pageNumber+1}"
+								th:class="${pageNumber==products.number} ? 'page-link active' : 'page-link'"></a>
+							</li>
+							<li class="page-item"><a class="page-link"
+								th:attr="href=${products.number+1==products.totalPages}? '#' :@{${'/v1/products/type/'+type + '/page/' +{products.number+1} }}">Next</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

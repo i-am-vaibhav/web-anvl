@@ -10,7 +10,48 @@
 	<div layout:fragment="content" class="container-fluid">
 		<div class="row">
 			<div class="m-3">
-				<h1>Welcome to ANVL</h1>
+				<h1 th:text="#{welcome.header}">Welcome to ANVL</h1>
+			</div>
+		</div>
+		<div class="offset-1 col-md-11 d-inline-block">
+			<div
+				class="col-md-3 animated rotateInDownLeft delay-1s d-inline-block"
+				style="width: 24% !important;" th:each="prod : ${products}">
+				<div class="card card-ani shadow-lg rounded rounded-3"
+					style="width: 14rem;">
+					<img class="card-img-top"
+						th:src="@{${'/products/images/' + prod.filename}}" height="220px"
+						width="100px" alt="Card image cap">
+					<div class="card-body">
+						<div class="card-title">
+							<div class="row">
+								<div class="col-md-10 col-10">
+									<h5 class="pull-left text-truncate" th:text="${prod.title}">Card
+										title</h5>
+								</div>
+								<div class="col-md-2 col-2 d-flex">
+									<h5 class="pull-right" th:text="${prod.rating}">Card title
+									</h5>
+									<em class="text-warning fas fa-star m-1"></em>
+								</div>
+								<div class="col-md-2 col-2 d-flex animated tada delay-2s">
+									<h6 class="pull-left ">Price&nbsp;:&nbsp;&nbsp;Rs.&nbsp;</h6>
+									<h6 class="pull-left" th:text="${prod.price}"></h6>
+								</div>
+							</div>
+						</div>
+						<p class="card-text text-muted text-truncate"
+							th:text="${prod.description}">Some quick example text to
+							build on the card title and make up the bulk of the card's
+							content.</p>
+						<div class="col-md-12">
+							<button class="pull-left more btn btn-sm btn-primary">more</button>
+							<a href="#" class="pull-right btn-sm btn btn-primary addToCart"
+								th:onclick="'addCartToCacheStorage(\'' + ${prod.id} + '\');'"><em
+								class="fas fa-plus"></em></a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

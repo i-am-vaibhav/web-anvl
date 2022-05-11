@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="https://www.w3.org/1999/xhtml/"
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml/"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="utf-8">
+<meta th:content="${_csrf.token}" id="token">
+<meta th:content="${_csrf.headerName}" id="header">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Web ANVL</title>
 <link rel="icon" th:href="@{/images/favicon.ico}" type="image/ico">
@@ -33,10 +35,14 @@
 <!-- summernote -->
 <link rel="stylesheet"
 	th:href="@{/webjars/AdminLTE/3.1.0/plugins/summernote/summernote-bs4.min.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet"
+	th:href="@{/webjars/animate.css/3.7.2/animate.min.css}" />
+
 </head>
 <body class="sidebar-mini layout-fixed" style="height: auto;">
 	<div class="wrapper">
-
+		<div id="loading"></div>
 		<!-- Preloader -->
 		<div
 			class="preloader flex-column justify-content-center align-items-center"
@@ -53,12 +59,17 @@
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#" role="button"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					th:href="@{/guest}" class="nav-link">Home</a></li>
+					th:href="@{/guest}" class="nav-link" th:text="#{layout.home}">Home</a></li>
 			</ul>
 
 			<!-- Right navbar links -->
 			<ul class="navbar-nav ml-auto">
 				<!-- Navbar Search -->
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/v1/product/cart}" role="button"> <i
+						class="fas fa-shopping-cart"></i><span
+						class="badge badge-warning navbar-badge" id="gcart-count">0</span>
+				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					data-widget="fullscreen" href="#" role="button"> <i
 						class="fas fa-expand-arrows-alt"></i>
@@ -74,9 +85,10 @@
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
 			<a th:href="@{/guest}" class="brand-link"> <img
-				th:src="@{/images/logo.png}" alt="AdminLTE Logo"
-				class="brand-image img-circle elevation-3" style="opacity: .8">
-				<span class="brand-text font-weight-light">WEB ANVL</span>
+				th:src="@{/images/logo.png}" alt="AdminLTE Logo" height="35"
+				width="35" class="brand-image img-circle elevation-3"
+				style="opacity: .8"> <span
+				class="brand-text font-weight-light">WEB ANVL</span>
 			</a>
 
 			<!-- Sidebar -->
@@ -97,11 +109,12 @@
 							<!-- Sidebar user panel (optional) -->
 							<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 								<div class="image">
-									<img th:src="@{/images/user icon.svg}"
+									<img th:src="@{/images/user icon.svg}" height="35" width="35"
 										class="img-circle elevation-2" alt="User Image">
 								</div>
 								<div class="info">
-									<a href="#" class="d-block">Guest</a>
+									<a href="#" class="d-block" id="username"
+										th:text="#{layout.guest}">Guest</a>
 								</div>
 							</div>
 
@@ -112,7 +125,7 @@
 									<li class="nav-item"><a th:href="@{/guest}"
 										class="nav-link w-100 active"> <i
 											class="nav-icon fas fa-home"></i>
-											<p>Home</p>
+											<p th:text="#{layout.home}">Home</p>
 									</a></li>
 
 								</ul>
@@ -181,7 +194,8 @@
 	<script
 		th:src="@{/webjars/AdminLTE/3.1.0/plugins/summernote/summernote-bs4.min.js}"></script>
 	<!-- AdminLTE App -->
-	<script th:src="@{/webjars/AdminLTE/3.1.0/dist/js/adminlte.js}"></script>
+	<script th:src="@{/js/product.js}"></script>
+	<script th:src="@{/js/loader.js}"></script>
 
 </body>
 
