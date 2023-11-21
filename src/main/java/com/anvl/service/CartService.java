@@ -74,6 +74,7 @@ public class CartService {
 				cart.setProductName(product.getTitle());
 				cart.setUsername(getAuthentication().getName());
 				cart.setPrice(product.getPrice());
+				cart.setImg(product.getFilename());
 				cartRepository.save(cart);
 			}
 		}
