@@ -46,6 +46,19 @@
 									content.</p>
 								<div class="col-md-12">
 									<button class="pull-left more btn btn-sm bg-gradient-warning">more</button>
+
+									<ul class="pagination pagination-sm">
+										<li class="page-item">
+											<a href="#" class="page-link"><em
+													class="fas fa-minus"
+													th:onclick="'removeFromCart(\'' + ${prod.id} + '\');'"></em></a>
+										</li>
+										<li class="page-item"><span class="page-link">2</span></li>
+										<li class="page-item"><a class="page-link" href="#"><em
+												class="fas fa-plus"
+												th:onclick="'addToCart(\'' + ${prod.id} + '\');'"></em></a></li>
+									</ul>
+
 									<a href="#" class="pull-right btn-sm btn bg-gradient-warning"><em
 										class="fas fa-plus"
 										th:onclick="'addToCart(\'' + ${prod.id} + '\');'"></em></a>

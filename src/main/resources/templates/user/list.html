@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml/"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="main/layout">
+<head>
+    <meta charset="ISO-8859-1">
+</head>
+<body>
+<div layout:fragment="content" class="container-fluid">
+    <div class="row">
+        <div class="m-3 d-flex">
+            <h1 th:text="#{users.header}">Users</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3 animated rotateInDownLeft delay-1s d-inline-block" style="width: 24% !important;"
+                     th:each="userVo : ${users.content}">
+                    <div class="card card-ani shadow-lg rounded rounded-3"
+                         style="width: 14rem;">
+                        <img th:src="@{/images/user icon.svg}"
+                             class="img-circle elevation-2"
+                             height="220px" width="100px" alt="User image cap">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-10 col-10">
+                                    <h5 class="pull-left text-truncate" th:text="${userVo.username}">Card
+                                        title</h5>
+                                </div>
+                                <div class="col-md-10 col-10">
+                                    <h5 class="pull-right" th:text="${userVo.email}">Email</h5>
+                                </div>
+                                <div class="col-md-10 col-10">
+                                    <h6 class="pull-right" th:text="${userVo.designation}">Designation</h6>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12">
+                                <button class="pull-left more btn btn-sm bg-gradient-warning">more</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination animated jackInTheBox delay-1s pagination-lg justify-content-center">
+                        <li class="page-item"><a class="page-link"
+                                                 th:attr="href=${users.number==0}? '#' : @{${'/v1/users/'+ {users.number-1} + '/page/' }}">Previous</a></li>
+                        <li class="page-item" th:each="pageNumber : ${pageNumbers}"><a
+                                class="page-link"
+                                th:href="@{${'/v1/users/'+ {pageNumber-1} + '/page/'}}"
+                                th:text="${pageNumber}"
+                                th:class="${pageNumber==users.number} ? 'page-link active' : 'page-link'"></a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 th:attr="href=${users.number+1==users.totalPages}? '#' :@{${'/v1/users/' +{users.number} + '/page/'  }}">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

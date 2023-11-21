@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import com.anvl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.util.Pair;
@@ -37,11 +38,15 @@ import com.anvl.service.ProductService;
 @Controller
 public class MainController {
 
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
+	private final CartService cartService;
+	private final UserService userService;
 
-	@Autowired
-	private CartService cartService;
+	public MainController(ProductService productService, CartService cartService, UserService userService) {
+		this.productService = productService;
+		this.cartService = cartService;
+		this.userService = userService;
+	}
 
 	@ModelAttribute("user")
 	public Principal getUser(Principal principal) {
@@ -51,6 +56,7 @@ public class MainController {
 	@GetMapping("/home")
 	public String getHomePage(Model model) {
 		model.addAttribute("cartcount", cartService.getCountOfProduct(getAuthentication().getName()));
+		model.addAttribute("usercount", userService.getUserCount());
 		model.addAttribute("products", productService.getProductCategories());
 		return "main/home";
 	}

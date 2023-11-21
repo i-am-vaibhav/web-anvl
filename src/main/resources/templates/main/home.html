@@ -15,6 +15,21 @@
 		</div>
 		<div class="container">
 			<div class="row">
+				<div class="col-lg-3 col-6 animated bounceInDown delay-1s">
+					<!-- small box -->
+					<div class="small-box bg-gradient-warning">
+						<div class="inner">
+							<h3 th:text="${usercount}">150</h3>
+							<p>Users</p>
+						</div>
+						<div class="icon">
+							<i class="fas fa-user"></i>
+						</div>
+						<a th:href="@{${'/v1/users/0/page'}}"
+						   class="small-box-footer">Checkout <i
+								class="fas fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
 				<div class="col-lg-3 col-6 animated bounceInDown delay-1s" th:each="prod : ${products}">
 					<!-- small box -->
 					<div class="small-box bg-gradient-warning">
